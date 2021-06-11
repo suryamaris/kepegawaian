@@ -12,7 +12,8 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title"><?= $user['name']; ?></h5>
-                    <table>
+                    <p class="card-text"><small class="text-muted">Member since <?= date('d F Y ', $user['date_created']); ?></small></p>
+                    <table class="table">
                         <tr>
                             <td>Jabatan</td>
                             <td>:</td>
@@ -48,7 +49,15 @@
                                 <p class="card-text"><?= $user['hp']; ?></p>
                             </td>
                         </tr>
-                        <p class="card-text"><small class="text-muted">Member since <?= date('d F Y ', $user['date_created']); ?></small></p>
+                        <tr>
+                            <td>
+                                <a href='<?= base_url('user/edit') ?>'><button class="btn btn-info">Edit</button></a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a href=""><button class="btn btn-danger" style="margin-left: 1em">Hapus</button></a>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
