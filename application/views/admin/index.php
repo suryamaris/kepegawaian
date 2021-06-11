@@ -1,29 +1,36 @@
-     
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800"></h1>
+    <table class="table">
+        <form>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Jabatan</th>
+                <th scope="col">Cuti</th>
+                <th scope="col">Izin</th>
+            </tr>
+            <?php foreach ($data as $pegawai) {
+                $id = $pegawai['id'] ?>
 
-                    <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                        <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
-                        </div>
-                        <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $user['name'];?></h5>
-                            <p class="card-text"><?= $user['email']; ?></p>
-                            <p class="card-text"><small class="text-muted">Member since <?= date('d F Y ', $user['date_created']); ?></small></p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
+                <tr>
+                    <td scope="row"><?php echo $pegawai['id']; ?></td>
+                    <td scope="row"><?php echo $pegawai['name']; ?></td>
+                    <td scope="row"><?php echo $pegawai['jabatan']; ?></td>
+                    <td scope="row"><?php echo $pegawai['cuti']; ?></td>
+                    <td scope="row"><?php echo $pegawai['izin']; ?></td>
+                    <td scope="row"><a href="<?= base_url('admin/dataPegawai') ?>/<?= $pegawai['id']; ?>" style="color: #ffffff"><button class="btn btn-info">Edit </a></button></td>
+                </tr>
+            <?php } ?>
+        </form>
+    </table>
+    <?= $this->pagination->create_links(); ?>
+    <div id="down">
+        <a href="<?php echo base_url(''); ?>"><button class="btn btn-primary">Tambah</button></a></td>
+    </div>
+</div>
+<!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
-
-            
+</div>
+<!-- End of Main Content -->

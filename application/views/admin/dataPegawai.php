@@ -49,17 +49,16 @@
                                 <p class="card-text"><?= $user['hp']; ?></p>
                             </td>
                         </tr>
-                        <?php if ($user['role_id'] == 1) { ?>
-                            <tr>
-                                <td>
-                                    <a href='<?= base_url('user/edit') ?>'><button class="btn btn-info">Edit</button></a>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <a href=""><button class="btn btn-danger" style="margin-left: 1em">Hapus</button></a>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                        <tr>
+                            <td>
+                                <a href='<?= base_url('admin/editPegawai') ?>/<?= $user['id']; ?>'><button class="btn btn-info">Edit</button></a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <a href=""><button class="btn btn-danger" style="margin-left: 1em">Hapus</button></a>
+                                <a href='<?= base_url('admin') ?>'><button class="btn btn-info">Kembali</button></a>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>

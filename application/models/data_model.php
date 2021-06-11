@@ -5,10 +5,18 @@ defined('BASEPATH') or exit('No direct script acces allowed');
 class Data_model extends CI_Model
 {
 
-    public function getHosting($table)
+    public function getPegawai($table)
     {
         $res = $this->db->get($table);
         return $res->result_array();
+    }
+    public function getPegawaiLimit($limit, $start)
+    {
+        return $this->db->get('user', $limit, $start)->result_array();
+    }
+    public function countAllPegawai()
+    {
+        return $this->db->get('user')->num_rows();
     }
 
     public function getWhere($table, $data)
