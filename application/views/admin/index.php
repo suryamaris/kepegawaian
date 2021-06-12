@@ -1,6 +1,18 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    <h3 class="mt-3">Data Pegawai</h3>
 
+    <div class="row">
+        <div class="col-md-6">
+            <form action="<?= base_url('admin') ?>" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Cari data pegawai" name="keyword" autocomplete="off" autofocus>
+                    <input class="btn btn-primary" type="submit" id="button-addon2" name="submit">
+                </div>
+            </form>
+            <h5>Result : <?= $total_rows; ?> </h5>
+        </div>
+    </div>
 
     <table class="table">
         <form>
@@ -24,11 +36,18 @@
                 </tr>
             <?php } ?>
         </form>
+        <?php if (empty($pegawai)) : ?>
+            <tr>
+                <td colspan="4">
+                    <div class="alert alert-danger" role="alert">
+                        Data tidak ditemukan !!
+                    </div>
+                </td>
+            </tr>
+        <?php endif; ?>
     </table>
     <?= $this->pagination->create_links(); ?>
-    <div id="down">
-        <a href="<?php echo base_url(''); ?>"><button class="btn btn-primary">Tambah</button></a></td>
-    </div>
+
 </div>
 <!-- /.container-fluid -->
 

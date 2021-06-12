@@ -10,8 +10,11 @@ class Data_model extends CI_Model
         $res = $this->db->get($table);
         return $res->result_array();
     }
-    public function getPegawaiLimit($limit, $start)
+    public function getPegawaiLimit($limit, $start, $keyword = null)
     {
+        if ($keyword) {
+            $this->db->like('name', $keyword);
+        }
         return $this->db->get('user', $limit, $start)->result_array();
     }
     public function countAllPegawai()

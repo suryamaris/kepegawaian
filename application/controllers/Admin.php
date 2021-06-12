@@ -9,44 +9,28 @@ class Admin extends CI_Controller
         $info['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->library('pagination');
+
+        // ambil data keyword
+        if ($this->input->post('submit')) {
+            $data['keyword'] = $this->input->post('keyword');
+            $this->session->set_userdata('keyword', $data['keyword']);
+        } else {
+            $data['keyword'] = $this->session->userdata('keyword');
+        }
         $this->load->model('data_model');
         //Config Pagination
-        $config['base_url'] = 'http://localhost/pegawai/admin/index/';
-        $config['total_rows'] = $this->data_model->countAllPegawai();
-        $config['per_page'] = 7;
-        //Styling
-        $config['full_tag_open'] = '<nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close'] = '</ul></nav>';
+        $this->db->like('name', $data['keyword']);
+        $this->db->from('user');
+        $config['total_rows'] = $this->db->count_all_results();
+        $config['per_page'] = 5;
 
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li class="page-item">';
-        $config['first_tag_close'] = '</li>';
-
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li class="page-item">';
-        $config['last_tag_close'] = '</li>';
-
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li class="page-item">';
-        $config['next_tag_close'] = '</li>';
-
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="page-item">';
-        $config['prev_tag_close'] = '</li>';
-
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</a></li>';
-
-        $config['attributes'] = array('class' => 'page-link');
         //Inisialisasi Pagination
         $this->pagination->initialize($config);
 
         $start = $this->uri->segment(3);
-        $data = $this->data_model->getPegawaiLimit($config['per_page'], $start);
+        $data = $this->data_model->getPegawaiLimit($config['per_page'], $start, $data['keyword']);
         $data = array('data' => $data);
+        $data['total_rows'] = $config['total_rows'];
 
 
         $this->load->view('templates/header', $info);
