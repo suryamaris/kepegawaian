@@ -5,7 +5,7 @@
             <div class="card mb-3" style="max-width: 540px; min-height : 540px;" style="padding:1px">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
+                        <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" style="max-width: 200px;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -71,17 +71,37 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Absensi</h5>
-                        <form action="<?= base_url('user/absensi') ?>" method="POST">>
+                        <form action="<?= base_url('user/absensi') ?>" method="POST">
                             <table class="table">
-                                <td>
-                                    <input type="submit" name="absen" value="Masuk" class="btn btn-success" style="margin-left: 1em; min-width: 180px; min-height: 100px;">
-                                </td>
-                                <td>
-                                    <input type="submit" name="absen" value="Keluar" class="btn btn-primary" style=" min-width: 180px; min-height: 100px;">
-                                </td>
-
+                                <?php if (empty($absensi['tanggal'])) {
+                                    $absensi['tanggal'] = '0';
+                                } ?>
+                                <?php if ($absensi['tanggal'] != date('d F Y', time())) { ?>
+                                    <td>
+                                        <input type="submit" name="absen" value="Masuk" class="btn btn-success" style="margin-left: 1em; min-width: 180px; min-height: 100px;">
+                                    </td>
+                                <?php } else { ?>
+                                    <td>
+                                        <button class="btn btn-success" style=" width: 230px; min-height: 100px;" disabled> Anda sudah absen Masuk hari ini </button>
+                                    </td>
+                                <?php } ?>
+                                <?php if ($absensi['tanggal']) {
+                                    if ($absensi['tanggal'] == date('d F Y', time()) && empty($absensi['keluar'])) { ?>
+                                        <td>
+                                            <input type="submit" name="absen" value="Keluar" class="btn btn-primary" style=" min-width: 180px; min-height: 100px;">
+                                        </td>
+                                    <?php } else { ?>
+                                        <td>
+                                            <button class="btn btn-primary" style="width: 230px; min-height: 100px;" disabled> Anda sudah absen Keluar hari ini </button>
+                                        </td>
+                                <?php }
+                                }
+                                ?>
                             </table>
-                        </form </div>
+                        </form>
+                    </div>
+
+                    <?php if ($absensi['tanggal'] != date('d F Y', time())) { ?>
                         <div class="card-body">
                             <h5 class="card-title">Permintaan Izin / Cuti</h5>
                             <form action="<?= base_url('user/perizinan') ?>" method="POST">
@@ -94,6 +114,7 @@
                                             <input type="submit" name="submit" value="Cuti" class="btn btn-secondary" style="min-width: 180px; min-height: 100px;">
                                         </td>
                                     <?php endif; ?>
+
                                     <?php if ($perizinan == null) echo "";
                                     elseif ($perizinan == 'Izin') { ?>
                                         <tr>
@@ -133,8 +154,9 @@
                                 </table>
                             </form>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
+    </div>
+    <!-- /.container-fluid -->
