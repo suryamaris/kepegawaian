@@ -32,7 +32,7 @@ class User extends CI_Controller
         $this->load->model('data_model');
         //Upadte data
         $data = $this->data_model->update_data();
-        $where = array('id' => $this->input->post('id'));;
+        $where = array('id' => $this->input->post('id'));
         $res = $this->data_model->Update('user', $data, $where);
         //kembali jika sudah update
         if ($res > 0) {
