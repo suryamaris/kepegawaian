@@ -24,7 +24,7 @@ class Absensi extends CI_Controller
         $this->load->model('data_model');
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $where = array('nama' => urldecode($nama));
-
+        $data['nama'] = $nama;
         $data['absen'] = $this->db->get_where('absensi', $where)->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

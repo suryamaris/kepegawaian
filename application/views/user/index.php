@@ -115,8 +115,14 @@
                                         </td>
                                     <?php endif; ?>
 
+                                    <!-- Ketika Izin -->
                                     <?php if ($perizinan == null) echo "";
                                     elseif ($perizinan == 'Izin') { ?>
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="nama" value="<?= $user['name']; ?>"></td>
+                                        </tr>
                                         <tr>
                                             <td>
                                                 Alasan Izin
@@ -125,12 +131,19 @@
                                             <td><input type="text" name="alasan"></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="submit" name="submit" value="Izin" class="btn btn-primary" style="min-width: 180px;"></td>
+                                            <td><input type="submit" name="izin" value="izin" class="btn btn-primary" style="min-width: 180px;"></td>
                                             <td></td>
                                             <td><a href="<?= base_url('user') ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a></td>
                                         </tr>
 
+                                        <!--Ketika Cuti  -->
                                     <?php } elseif ($perizinan == 'Cuti') { ?>
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="nama" value="<?= $user['name']; ?>"></td>
+
+                                        </tr>
                                         <tr>
                                             <td>
                                                 Alasan Cuti
@@ -144,9 +157,9 @@
                                                 Lama Cuti
                                             </td>
                                             <td>:</td>
-                                            <td><input type="text" name="alasan" style="max-width: 50px;"> Hari</td>
+                                            <td><input type="text" name="hari" style="max-width: 50px;"> Hari</td>
                                         </tr>
-                                        <td><input type="submit" name="submit" value="submit" class="btn btn-primary" style="min-width: 180px;"></td>
+                                        <td><input type="submit" name="izin" value="cuti" class="btn btn-primary" style="min-width: 180px;"></td>
                                         <td></td>
                                         <td><a href="<?= base_url('user') ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a></td>
                                         </tr>

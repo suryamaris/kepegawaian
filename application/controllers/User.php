@@ -44,6 +44,54 @@ class User extends CI_Controller
         $this->load->model('data_model');
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['perizinan'] = $this->input->post('submit');
+        $data['izin'] = $this->input->post('izin');
+        // JIka Izin
+        $nama = $this->input->post('nama');
+        if ($data['izin'] == 'izin') {
+            $izin = array(
+                'nama' => $nama,
+                'tanggal' => date('d F Y', time()),
+                'jenis' => 'Izin',
+                'alasan' => $this->input->post('alasan'),
+                'hari' => 1
+            );
+            $keterangan = $this->input->post('alasan') . " Selama 1 Hari";
+            $absen = array(
+                'nama' => $nama,
+                'tanggal' => date('d F Y', time()),
+                'masuk' => 'Izin',
+                'keluar' => 'Izin',
+                'keterangan' => $keterangan
+            );
+            $res = $this->data_model->Insert('perizinan', $izin);
+            $res1 = $this->data_model->Insert('absensi', $absen);
+            if ($res > 0) {
+                redirect(base_url('user'), 'refresh');
+            }
+        }
+        if ($data['izin'] == 'cuti') {
+            $izin = array(
+                'nama' => $nama,
+                'tanggal' => date('d F Y', time()),
+                'jenis' => 'Cuti',
+                'alasan' => $this->input->post('alasan'),
+                'hari' => $this->input->post('hari')
+            );
+            $keterangan = $this->input->post('alasan') . " Selama" . $this->input->post('hari') . " Hari";
+            $absen = array(
+                'nama' => $nama,
+                'tanggal' => date('d F Y', time()),
+                'masuk' => 'Cuti',
+                'keluar' => 'Cuti',
+                'keterangan' => $keterangan
+            );
+            $res = $this->data_model->Insert('perizinan', $izin);
+            $res1 = $this->data_model->Insert('absensi', $absen);
+            if ($res > 0) {
+                redirect(base_url('user'), 'refresh');
+            }
+        }
+        $where = array('nama' => $nama, 'tanggal' => date('d F Y', time()));
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
