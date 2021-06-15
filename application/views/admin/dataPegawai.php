@@ -20,6 +20,13 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Bagian</td>
+                                    <td>:</td>
+                                    <td>
+                                        <p class="card-text"><?= $user['bagian']; ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Agama</td>
                                     <td>:</td>
                                     <td>
@@ -84,9 +91,10 @@
                                 </table>
                             </form>
 
+                            <!-- Buat surat Peringatan -->
                             <?php if ($tindakan == "Peringatan") { ?>
-                                <form action="<?= base_url('admin/tindakan/' . $user['id']) ?>" method="POST" target="_blank">
-                                    <table>
+                                <table>
+                                    <form action="<?= base_url('admin/tindakan/' . $user['id']) ?>" method="POST" target="_blank">
                                         <tr>
                                             <td>Nama</td>
                                             <td>:</td>
@@ -103,20 +111,71 @@
                                             <td><input type="text" name="no"></td>
                                         </tr>
                                         <tr>
+                                            <td style="width: 100px;">Perihal</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="perihal"></td>
+                                        </tr>
+                                        <tr>
                                             <td style="width:200px;">Isi Surat</td>
                                             <td>:</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><textarea name="isi" style="width: 500px; height:250px" style="text-align: left;"></textarea></td>
+                                            <td colspan="3"><textarea name="isi" style="width: 500px; height:250px" style="text-align: left;" wrap="hard"></textarea></td>
                                         </tr>
                                         <tr>
                                             <td><input type="submit" name="submit" value="Kirim" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
                                             <td></td>
-                                            <td> <a href="<?= base_url('admin/dataPegawai/' . $user['id']) ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a>
-                                            </td>
+                                    </form>
+                                    <td> <a href="<?= base_url('admin/dataPegawai/' . $user['id']) ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a>
+                                    </td>
+                                    </tr>
+                                </table>
+                            <?php }  ?>
+
+                            <!-- Buat Surat Mutasi -->
+                            <?php if ($tindakan == "Mutasi") { ?>
+                                <table>
+                                    <form action="<?= base_url('admin/tindakan/' . $user['id']) ?>" method="POST" target="_blank">
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="nama1" value="<?= $user['name']; ?>" style="width: 120px;" readonly></td>
+                                            <td>Bagian</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="bagian1" value="<?= $user['bagian'];  ?>" style="width: 150px;" readonly></td>
                                         </tr>
-                                    </table>
-                                </form>
+                                        <tr>
+                                            <td>Jabatan</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="jabatan1" value="<?= $user['jabatan']; ?>" style="width: 120px;" readonly></td>
+                                            <td>Bagian Baru</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="bagian2" style="width: 150px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100px;">NO. Surat</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="no" style="width: 120px;"></td>
+
+                                            <td style="width: 100px;">Perihal</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="perihal" style="width: 150px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:200px;" colspan="2">Isi Surat</td>
+                                            <td>:</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"><textarea name="isi" style="width: 500px; height:250px" style="text-align: left;" wrap="hard"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><input type="submit" name="submit" value="Mutasi" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
+                                            <td></td>
+                                    </form>
+                                    <td colspan="3"> <a href="<?= base_url('admin/dataPegawai/' . $user['id']) ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a>
+                                    </td>
+                                    </tr>
+                                </table>
                             <?php }  ?>
                         </div>
                         <?php if (empty($tindakan)) : ?>

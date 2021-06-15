@@ -84,17 +84,28 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', array('id' => $id))->row_array();
         $data['tindakan'] = $this->input->post('tindakan');
         $data['kirim'] = $this->input->post('submit');
+
+
+
         $isi['data'] = array(
             'no' => $this->input->post('no'),
             'isi' => $this->input->post('isi'),
+            'perihal' => $this->input->post('perihal'),
             'nama' => $this->input->post('nama1'),
-            'jabatan' => $this->input->post('jabatan1'),
+            'jabatan1' => $this->input->post('jabatan1'),
+            'bagian1' => $this->input->post('bagian1'),
+            'bagian2' => $this->input->post('bagian2'),
             'tanggal' => date('d F Y', time()),
             'admin' => $admin['name']
         );
+
         if ($data['kirim'] == 'Kirim') {
             $this->load->view('admin/cetak', $isi);
+        } elseif ($data['kirim'] == 'Mutasi') {
+            $this->load->view('admin/cetakMutasi', $isi);
         }
+
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -52,6 +52,7 @@ class Data_model extends CI_Model
         $data = array(
             'name' => $this->input->post('name'),
             'jabatan' => $this->input->post('jabatan'),
+            'bagian' => $this->input->post('bagian'),
             'agama' => $this->input->post('agama'),
             'alamat' => $this->input->post('alamat'),
             'email' => $this->input->post('email'),

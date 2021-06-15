@@ -7,7 +7,7 @@
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
+                <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" style="max-width: 200px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -34,6 +34,13 @@
                                 <td>:</td>
                                 <td>
                                     <p class="card-text"><input type="text" name="jabatan" value="<?= $user['jabatan']; ?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bagian</td>
+                                <td>:</td>
+                                <td>
+                                    <p class="card-text"><input type="text" name="bagian" value="<?= $user['bagian']; ?>">
                                 </td>
                             </tr>
                             <tr>
