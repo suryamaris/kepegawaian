@@ -1,5 +1,33 @@
 <h1>Absensi Pegawai</h1>
-<h3>Tanggal : <?= date('d F Y', time()) ?></h3>
+<table>
+    <form action="absensi" method="POST">
+        <tr>
+            <td>Absensi pada tanggal : </td>
+            <td><input type="text" name="tanggal" style="max-width: 30px;"></td>
+            <td><select class="form-select" name="bulan">
+                    <option selected>Bulan</option>
+                    <option value="January">Januari</option>
+                    <option value="February">Februari</option>
+                    <option value="March">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mai">Mei</option>
+                    <option value="June">Juni</option>
+                    <option value="July">Juli</option>
+                    <option value="August">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="October">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="December">Desember</option>
+                </select></td>
+            <td><input type="text" name="tahun" placeholder="Tahun" style="max-width: 50px;"></td>
+            <td><input type="submit" name="absen" value="Cari" class="btn btn-primary" style=" width: 50px;"></td>
+
+    </form>
+    <td><a href="<?= base_url('admin/cetakAbsen/' . $cari) ?>" target="_blank"><button class="btn btn-info" style="margin-left: 500px;">Cetak Laporan</button></a></td>
+    </tr>
+</table>
+
+<h3>Tanggal : <?= $cari ?></h3>
 <table class="table table-sm">
     <form>
         <thead class="table-light">
