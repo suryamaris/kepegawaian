@@ -8,7 +8,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['perizinan'] = null;
         $nama = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['absensi'] = $this->db->get_where('absensi', ['nama' => $nama['name']])->row_array();
+        $data['absensi'] = $this->db->get_where('absensi', ['nama' => $nama['name'], 'tanggal' => date('d F Y', time())])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -104,7 +104,7 @@ class User extends CI_Controller
         $this->load->model('data_model');
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $nama = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['absensi'] = $this->db->get_where('absensi', ['nama' => $nama['name']])->row_array();
+        $data['absensi'] = $this->db->get_where('absensi', ['nama' => $nama['name'], 'tanggal' => date('d F Y', time())])->row_array();
         $data['absen'] = $this->input->post('absen');
         if ($data['absen'] == 'Masuk') {
             $absen = array(
