@@ -133,7 +133,7 @@
                             <?php }  ?>
 
                             <!-- Buat Surat Mutasi -->
-                            <?php if ($tindakan == "Mutasi") { ?>
+                            <?php if ($tindakan == "Mutasi" || $tindakan == "Promosi" || $tindakan == "Demosi") { ?>
                                 <table>
                                     <form action="<?= base_url('admin/tindakan/' . $user['id']) ?>" method="POST" target="_blank">
                                         <tr>
@@ -153,23 +153,30 @@
                                             <td><input type="text" name="bagian2" style="width: 150px;"></td>
                                         </tr>
                                         <tr>
+                                            <td style="width: 100px;">Jabatan Baru</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="jabatan2" style="width: 120px;"></td>
                                             <td style="width: 100px;">NO. Surat</td>
                                             <td>:</td>
-                                            <td><input type="text" name="no" style="width: 120px;"></td>
+                                            <td><input type="text" name="no" style="width: 150px;"></td>
 
+                                        </tr>
+                                        <tr>
                                             <td style="width: 100px;">Perihal</td>
                                             <td>:</td>
-                                            <td><input type="text" name="perihal" style="width: 150px;"></td>
-                                        </tr>
+                                            <td><input type="text" name="perihal" style="width: 120px;"></td>
+                                            <td>Tujuan Surat</td>
+                                            <td>:</td>
+                                            <td><input type="text" name="tujuan" style="width: 150px;"></td>
                                         <tr>
                                             <td style="width:200px;" colspan="2">Isi Surat</td>
                                             <td>:</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6"><textarea name="isi" style="width: 500px; height:250px" style="text-align: left;" wrap="hard"></textarea></td>
+                                            <td colspan="6"><textarea name="isi" style="width: 500px; height:200px" style="text-align: left;" wrap="hard"></textarea></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><input type="submit" name="submit" value="Mutasi" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
+                                            <td colspan="3"><input type="submit" name="submit" value="Submit" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
                                             <td></td>
                                     </form>
                                     <td colspan="3"> <a href="<?= base_url('admin/dataPegawai/' . $user['id']) ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a>
@@ -181,7 +188,7 @@
                         <?php if (empty($tindakan)) : ?>
                             <div class="card-body">
                                 <h5 class="card-title">Perubahan Jabatan</h5> <?php endif; ?>
-                            <form action="<?= base_url('user/perizinan') ?>" method="POST">
+                            <form action="<?= base_url('admin/tindakan/' . $user['id']) ?>" method="POST">
                                 <table class="table">
                                     <?php if (empty($tindakan)) : ?>
                                         <tr>

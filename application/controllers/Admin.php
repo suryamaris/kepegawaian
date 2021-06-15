@@ -91,17 +91,19 @@ class Admin extends CI_Controller
             'no' => $this->input->post('no'),
             'isi' => $this->input->post('isi'),
             'perihal' => $this->input->post('perihal'),
+            'tujuan' => $this->input->post('tujuan'),
             'nama' => $this->input->post('nama1'),
             'jabatan1' => $this->input->post('jabatan1'),
+            'jabatan2' => $this->input->post('jabatan2'),
             'bagian1' => $this->input->post('bagian1'),
             'bagian2' => $this->input->post('bagian2'),
             'tanggal' => date('d F Y', time()),
             'admin' => $admin['name']
         );
 
-        if ($data['kirim'] == 'Kirim') {
+        if ($data['kirim'] == 'Peringatan') {
             $this->load->view('admin/cetak', $isi);
-        } elseif ($data['kirim'] == 'Mutasi') {
+        } elseif ($data['kirim'] == 'Submit') {
             $this->load->view('admin/cetakMutasi', $isi);
         }
 

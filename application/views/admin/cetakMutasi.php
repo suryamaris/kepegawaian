@@ -21,16 +21,17 @@ margin:0;}
 <p>' . $data['admin'] . ' </p>
 <p> Jabatan : HRD </p>
 <br>
-<p> Yang dengan ini bertindak atas nama PT Suamtera Kemasindo Memutuskan untuk melakukan mutasi terhadap :</p>
+<p> Yang dengan ini bertindak atas nama PT Suamtera Kemasindo Memutuskan untuk melakukan' . $data['tujuan'] . ' terhadap :</p>
 <br>
 <p>Nama     :' . $data['nama'] . '</p>
 <p>Bagian   :' . $data['bagian1'] . '</p>      
 <p>Jabatan  :' . $data['jabatan1'] . '</p>
 <br>
-<p>Dengan bagian baru : </p>
+<p>Dengan jabatan / bagian baru : </p>
+<p>Jabatan  :' . $data['jabatan2'] . '</p>
 <p>Bagian   :' . $data['bagian2'] . '</p>    
 <br>
-<p>' . $data['isi'] . '</p></br>
+<p>&emsp;&emsp;&emsp;' . $data['isi'] . '</p></br>
 <br>
 <p>Demikian surat ini agar dilaksanakan dan disadari semestinya.</p>
 <br>
