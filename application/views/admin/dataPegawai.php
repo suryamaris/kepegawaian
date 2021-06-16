@@ -98,7 +98,7 @@
                                         <tr>
                                             <td>Nama</td>
                                             <td>:</td>
-                                            <td><input type="text" name="nama1" value="<?= $user['name']; ?>" readonly></td>
+                                            <td><input type="text" name="nama" value="<?= $user['name']; ?>" readonly></td>
                                         </tr>
                                         <tr>
                                             <td>Jabatan</td>
@@ -139,7 +139,7 @@
                                         <tr>
                                             <td>Nama</td>
                                             <td>:</td>
-                                            <td><input type="text" name="nama1" value="<?= $user['name']; ?>" style="width: 120px;" readonly></td>
+                                            <td><input type="text" name="nama" value="<?= $user['name']; ?>" style="width: 120px;" readonly></td>
                                             <td>Bagian</td>
                                             <td>:</td>
                                             <td><input type="text" name="bagian1" value="<?= $user['bagian'];  ?>" style="width: 150px;" readonly></td>
@@ -176,7 +176,16 @@
                                             <td colspan="6"><textarea name="isi" style="width: 500px; height:200px" style="text-align: left;" wrap="hard"></textarea></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><input type="submit" name="submit" value="Submit" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
+                                            <td colspan="3"><input type="submit" onclick="clicked()" name="submit" class="btn btn-primary" style="min-width: 180px;" target="_blank"></td>
+                                            <script type="text/javascript">
+                                                function clicked() {
+                                                    if (confirm('Anda yakin dengan keputusan tersebut?')) {
+                                                        yourformelement.submit(value = "Submit");
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            </script>
                                             <td></td>
                                     </form>
                                     <td colspan="3"> <a href="<?= base_url('admin/dataPegawai/' . $user['id']) ?>"><button class="btn btn-danger" style="min-width: 180px;">Batal</button></a>

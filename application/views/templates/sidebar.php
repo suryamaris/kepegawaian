@@ -2,11 +2,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="far fa-fw fa-address-card"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">PT Sumatera Kemasindo</div>
+        <div class="sidebar-brand-text mx-3" style="font-size: 11pt;">PT Sumatera Kemasindo</div>
     </a>
 
     <!-- Divider -->

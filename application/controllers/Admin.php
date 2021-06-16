@@ -79,10 +79,13 @@ class Admin extends CI_Controller
 
     public function Tindakan($id)
     {
-
+        $this->load->model('data_model');
         $admin = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $this->db->get_where('user', array('id' => $id))->row_array();
         $data['tindakan'] = $this->input->post('tindakan');
+
+        // masukan data tindakan
+
         $data['kirim'] = $this->input->post('submit');
 
 
@@ -92,7 +95,7 @@ class Admin extends CI_Controller
             'isi' => $this->input->post('isi'),
             'perihal' => $this->input->post('perihal'),
             'tujuan' => $this->input->post('tujuan'),
-            'nama' => $this->input->post('nama1'),
+            'nama' => $this->input->post('nama'),
             'jabatan1' => $this->input->post('jabatan1'),
             'jabatan2' => $this->input->post('jabatan2'),
             'bagian1' => $this->input->post('bagian1'),
@@ -101,9 +104,33 @@ class Admin extends CI_Controller
             'admin' => $admin['name']
         );
 
-        if ($data['kirim'] == 'Peringatan') {
+        if ($data['kirim'] == 'Kirim') {
+
+            $masuk = array(
+                'nama' => $isi['data']['nama'],
+                'tanggal' => $isi['data']['tanggal'],
+                'jenis' => 'Peringatan'
+            );
+
+            $this->data_model->Insert('tindakan', $masuk);
             $this->load->view('admin/cetak', $isi);
         } elseif ($data['kirim'] == 'Submit') {
+            $masuk = array(
+                'nama' => $isi['data']['nama'],
+                'tanggal' => $isi['data']['tanggal'],
+                'jenis' => $isi['data']['tujuan'],
+                'jabatan1' => $isi['data']['jabatan1'],
+                'jabatan2' => $isi['data']['jabatan2'],
+                'bagian1' => $isi['data']['bagian1'],
+                'bagian2' => $isi['data']['bagian2']
+            );
+            $update = array(
+                'jabatan' => $isi['data']['jabatan2'],
+                'bagian' => $isi['data']['bagian2']
+            );
+
+            $this->data_model->Insert('tindakan', $masuk);
+            $this->data_model->Update('user', $update, ['name' => $isi['data']['nama']]);
             $this->load->view('admin/cetakMutasi', $isi);
         }
 
@@ -123,5 +150,21 @@ class Admin extends CI_Controller
         $data['cari'] = urldecode($cari);
         $data['tanggal'] = $this->db->get_where('absensi', $where)->result_array();
         $this->load->view('admin/cetakAbsen', $data);
+    }
+    public function cetakAbsenPegawai($nama)
+    {
+        $data['nama'] = urldecode($nama);
+        $where = array('nama' => $data['nama']);
+        $data['pegawai'] = $this->db->get_where('absensi', $where)->result_array();
+        $this->load->view('admin/cetakAbsenPegawai', $data);
+    }
+
+    public function cetakTindakan($bulan)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->db->like('tanggal', $bulan);
+        $data['bulan'] = $bulan;
+        $data['pencarian'] = $this->db->get('tindakan')->result_array();
+        $this->load->view('admin/cetakTindakan', $data);
     }
 }

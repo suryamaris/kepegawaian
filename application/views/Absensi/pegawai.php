@@ -1,5 +1,6 @@
 <h1>Absensi Pegawai</h1>
 <h2 style="color: #555;"><?= urldecode($nama) ?></h2>
+<td><a href="<?= base_url('admin/cetakAbsenPegawai/' . urldecode($nama)) ?>" target="_blank"><button class="btn btn-info" style="margin-left: 500px;">Cetak Laporan</button></a></td>
 <table class="table table-sm">
     <form>
         <thead class="table-light">
