@@ -32,7 +32,7 @@
                     <td scope="row"><?php echo $pegawai['jabatan']; ?></td>
                     <td scope="row"><?php echo $pegawai['cuti']; ?></td>
                     <td scope="row"><?php echo $pegawai['izin']; ?></td>
-                    <td scope="row"><a href="<?= base_url('admin/dataPegawai') ?>/<?= $pegawai['id']; ?>" style="color: #ffffff"><button class="btn btn-info">Edit </a></button></td>
+                    <td scope="row"><a href="<?= base_url('admin/dataPegawai') ?>/<?= $pegawai['id']; ?>" style="color: #ffffff"><button class="btn btn-info">Lihat </a></button></td>
                 </tr>
             <?php } ?>
         </form>

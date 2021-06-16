@@ -63,6 +63,9 @@ class User extends CI_Controller
                 'keluar' => 'Izin',
                 'keterangan' => $keterangan
             );
+            $tambah = $data['user']['izin'] + 1;
+
+            $res2 = $this->data_model->Update('user', ['izin' => $tambah], ['name' => $nama]);
             $res = $this->data_model->Insert('perizinan', $izin);
             $res1 = $this->data_model->Insert('absensi', $absen);
             if ($res > 0) {
@@ -85,6 +88,9 @@ class User extends CI_Controller
                 'keluar' => 'Cuti',
                 'keterangan' => $keterangan
             );
+            $tambah = $data['user']['cuti'] + 1;
+
+            $res2 = $this->data_model->Update('user', ['cuti' => $tambah], ['name' => $nama]);
             $res = $this->data_model->Insert('perizinan', $izin);
             $res1 = $this->data_model->Insert('absensi', $absen);
             if ($res > 0) {
