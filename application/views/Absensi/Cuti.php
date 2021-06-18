@@ -1,10 +1,10 @@
-<h1 style="text-decoration: underline;">Absensi Pegawai</h1>
+<h1 style="text-decoration: underline;">Absensi Cuti</h1>
 <br>
 <table>
-    <form action="absensi" method="POST">
+    <form action="cuti" method="POST">
         <tr>
             <td>
-                <h5 style="color:darkslategrey;">Absensi pada tanggal : </h5>
+                <h5 style="color:darkslategrey;">Cuti pada tanggal : </h5>
             </td>
             <td><input type="text" name="tanggal" style="max-width: 50px; min-height: 40px;"> &nbsp;&nbsp;</td>
             <td><select class="form-select" name="bulan" style="min-height: 40px;">
@@ -26,7 +26,7 @@
             <td><input type="submit" name="absen" value="Cari" class="btn btn-primary" style=" width: 50px;"></td>
 
     </form>
-    <td><a href="<?= base_url('admin/cetakAbsen/' . $cari) ?>" target="_blank"><button class="btn btn-info" style="margin-left: 500px; height:50px">Cetak Laporan</button></a></td>
+    <td><a href="<?= base_url('admin/cetakAbsenCuti/' . $cari) ?>" target="_blank"><button class="btn btn-info" style="margin-left: 500px; height:50px">Cetak Laporan</button></a></td>
     </tr>
 </table>
 <br>

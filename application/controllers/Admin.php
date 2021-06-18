@@ -151,6 +151,32 @@ class Admin extends CI_Controller
         $data['tanggal'] = $this->db->get_where('absensi', $where)->result_array();
         $this->load->view('admin/cetakAbsen', $data);
     }
+    public function cetakAbsenHadir($cari)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $where = array('tanggal' => urldecode($cari));
+        $data['cari'] = urldecode($cari);
+        $selain = array('Cuti', 'Iizn');
+        $this->db->where_not_in('masuk', $selain);
+        $data['tanggal'] = $this->db->get_where('absensi', $where)->result_array();
+        $this->load->view('admin/cetakAbsen', $data);
+    }
+    public function cetakAbsenCuti($cari)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $where = array('tanggal' => urldecode($cari), 'masuk' => 'Cuti');
+        $data['cari'] = urldecode($cari);
+        $data['tanggal'] = $this->db->get_where('absensi', $where)->result_array();
+        $this->load->view('admin/cetakAbsen', $data);
+    }
+    public function cetakAbsenIzin($cari)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $where = array('tanggal' => urldecode($cari), 'masuk' => 'Izin');
+        $data['cari'] = urldecode($cari);
+        $data['tanggal'] = $this->db->get_where('absensi', $where)->result_array();
+        $this->load->view('admin/cetakAbsen', $data);
+    }
     public function cetakAbsenPegawai($nama)
     {
         $data['nama'] = urldecode($nama);
@@ -161,10 +187,34 @@ class Admin extends CI_Controller
 
     public function cetakTindakan($bulan)
     {
+
+        $data['bulan'] = $bulan;
+        $this->db->like('tanggal', $bulan);
+        $data['pencarian'] = $this->db->get('tindakan')->result_array();
+        $this->load->view('admin/cetakTindakan', $data);
+    }
+    public function cetakTindakanMutasi($bulan)
+    {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->db->like('tanggal', $bulan);
         $data['bulan'] = $bulan;
-        $data['pencarian'] = $this->db->get('tindakan')->result_array();
+        $data['pencarian'] = $this->db->get_where('tindakan', ['jenis' => 'Mutasi'])->result_array();
+        $this->load->view('admin/cetakTindakan', $data);
+    }
+    public function cetakTindakanPromosi($bulan)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->db->like('tanggal', $bulan);
+        $data['bulan'] = $bulan;
+        $data['pencarian'] = $this->db->get_where('tindakan', ['jenis' => 'Promosi'])->result_array();
+        $this->load->view('admin/cetakTindakan', $data);
+    }
+    public function cetakTindakanDemosi($bulan)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->db->like('tanggal', $bulan);
+        $data['bulan'] = $bulan;
+        $data['pencarian'] = $this->db->get_where('tindakan', ['jenis' => 'Demosi'])->result_array();
         $this->load->view('admin/cetakTindakan', $data);
     }
 }
